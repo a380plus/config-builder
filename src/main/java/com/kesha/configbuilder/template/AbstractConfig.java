@@ -11,6 +11,10 @@ public class AbstractConfig {
     public static Properties loadResources(String path) {
         Properties properties = new Properties();
         InputStream in = AbstractConfig.class.getClassLoader().getResourceAsStream(path);
+        if (null == in) {
+            return properties;
+        }
+
         try {
             properties.load(in);
         } catch (IOException e) {
